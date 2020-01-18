@@ -1,13 +1,26 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
 		<title>{% block title %}Главная{% endblock %} - Доска объявлений </title>
+
+		<link rel="stylesheet" type="text/css" href="{% static 'bboard/style.css' %}">
+
 	</head>
 	<body>
 		<header>
-			<h1>Объявления</h1>
+			<h1>ABITO</h1>
 		</header>
+		<select>
+				<option value="none" hidden="">Выберите категорию</option>
+			  {% for rubric in rubrics %}
+			  	<option>{{ rubric.name }}</option>
+			  {% endfor %}
+			  <input type="text" placeholder="Поиск Объявления">
+			  <input type="submit" value="Искать">
+		</select>
 		<nav>
 			<a href="{% url 'index' %}">Главная</a>
 			<a href="{% url 'add' %}">Добавить</a>
@@ -19,5 +32,6 @@
 			{% block content %}
 			{% endblock %}
 		</section>
+		
 	</body>
 </html>

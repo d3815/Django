@@ -23,6 +23,13 @@ def by_rubric(request, rubric_id):
 	return render(request, 'bboard/by_rubric.html', context)
 
 
+def by_lot(request):
+	lots_list = Bb.objects.all()
+	current_lot = Bb.objects.get(pk=1)
+	context = {'lots_list' : lots_list, 'current_lot': current_lot}
+	return render(request, 'bboard/by_lot.html', context)
+
+
 class BbCreateView(CreateView):
 	template_name = 'bboard/create.html'
 	form_class = BbForm
