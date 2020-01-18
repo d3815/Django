@@ -23,10 +23,11 @@ def by_rubric(request, rubric_id):
 	return render(request, 'bboard/by_rubric.html', context)
 
 
-def by_lot(request):
+def by_lot(request, lot_id):
 	lots_list = Bb.objects.all()
-	current_lot = Bb.objects.get(pk=1)
-	context = {'lots_list' : lots_list, 'current_lot': current_lot}
+	current_lot = Bb.objects.get(pk=lot_id)
+	rubrics = Rubric.objects.all()
+	context = {'lots_list' : lots_list, 'current_lot': current_lot, 'rubrics': rubrics}
 	return render(request, 'bboard/by_lot.html', context)
 
 

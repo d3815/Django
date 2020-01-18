@@ -2,8 +2,8 @@
 
 {% block content %}
 {% for bb in bbs %}
-<div class="b">
-	<h2>{{ bb.title }}</h2>
+<div>
+	<a href="{% url 'by_lot' bb.pk %}"><h2>{{ bb.title }}</h2></a>
 	<p>{{ bb.content }}</p>
 	<p>
 		<a href="{% url 'by_rubric' bb.rubric.pk %}"> {{ bb.rubric.name }} </a>
