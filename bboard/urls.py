@@ -6,4 +6,4 @@ urlpatterns = [
 	path('', index, name='index'), 
 	path('add/', BbCreateView.as_view(), name='add'),
 	path('lot/<int:lot_id>', by_lot, name='by_lot'), 
-]
+] 
