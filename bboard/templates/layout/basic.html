@@ -7,31 +7,51 @@
 		<title>{% block title %}Главная{% endblock %} - Доска объявлений </title>
 
 		<link rel="stylesheet" type="text/css" href="{% static 'bboard/style.css' %}">
+		<!-- Подключаем Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 	</head>
 	<body>
-		<header>
-			<h1>ABITO</h1>
-		</header>
-		<select>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<header class="top-panel">
+						<h1>ABITO</h1>
+						<a href="{% url 'landing' %}">Войти</a>
+						<a href="">Регистрация</a>
+						<input type="text" class="search" placeholder="Поиск Объявления">
+						  <input type="submit" value="Искать">
+					</header>
+					
+						  
+					<nav>
+						<a href="{% url 'index' %}">Главная</a>
+						<a href="{% url 'add' %}">Добавить</a>
+						{% for rubric in rubrics %}
+						<a href="{% url 'by_rubric' rubric.pk %}">{{ rubric.name }}</a>
+						{% endfor %}
+					</nav>
+					<section>
+						{% block landing %}
+						{% endblock %}
+
+						{% block content %}
+						{% endblock %}
+					</section>
+				</div> <!-- div col-lg-12 -->
+			</div> <!-- div row -->
+		</div> <!-- div.container -->
+	</body>
+</html>
+
+
+
+<!--
+	<select>
 				<option value="none" hidden="">Выберите категорию</option>
 			  {% for rubric in rubrics %}
 			  	<option>{{ rubric.name }}</option>
 			  {% endfor %}
-			  <input type="text" placeholder="Поиск Объявления">
-			  <input type="submit" value="Искать">
 		</select>
-		<nav>
-			<a href="{% url 'index' %}">Главная</a>
-			<a href="{% url 'add' %}">Добавить</a>
-			{% for rubric in rubrics %}
-			<a href="{% url 'by_rubric' rubric.pk %}">{{ rubric.name }}</a>
-			{% endfor %}
-		</nav>
-		<section>
-			{% block content %}
-			{% endblock %}
-		</section>
+		-->
 		
-	</body>
-</html>

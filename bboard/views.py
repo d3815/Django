@@ -23,16 +23,16 @@ def by_rubric(request, rubric_id):
 	return render(request, 'bboard/by_rubric.html', context)
 
 
-def by_lot(request, lot_id):
-	lots_list = Bb.objects.all()
-	current_lot = Bb.objects.get(pk=lot_id)
+def by_product(request, product_id):
+	products_list = Bb.objects.all()
+	current_product = Bb.objects.get(pk=product_id)
 	rubrics = Rubric.objects.all()
-	context = {'lots_list' : lots_list, 'current_lot': current_lot, 'rubrics': rubrics}
-	return render(request, 'bboard/by_lot.html', context)
+	context = {'products_list' : products_list, 'current_product': current_product, 'rubrics': rubrics}
+	return render(request, 'bboard/by_product.html', context)
 
 
-class BbCreateView(CreateView):
-	template_name = 'bboard/create.html'
+class BbCreateProductView(CreateView):
+	template_name = 'bboard/create_product.html'
 	form_class = BbForm
 	success_url = reverse_lazy('index')
 

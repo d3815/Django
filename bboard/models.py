@@ -8,7 +8,7 @@ class Bb(models.Model):
 	published = models.DateTimeField(auto_now_add=True, db_index=True)
 	rubric = models.ForeignKey('Rubric', null=True, on_delete=models.PROTECT, 
 								verbose_name='Рубрики')
-	#image = models.ImageField(blank=True, upload_to='images/blog/%Y/%m/%d', help_text='150x150px', verbose_name='Ссылка картинки')
+	#image = models.ImageField(upload_to='image')
 
 
 	def __str__(self):
