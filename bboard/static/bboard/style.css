@@ -1,5 +1,5 @@
 body {
-	
+
 }
 
 .search {
@@ -25,7 +25,10 @@ section	{
 	margin-left: 170px;
 }
 
-
+.landing-page {
+	padding-top: 10%;
+	background-color: red;
+}
 
 
 /* qwe */
