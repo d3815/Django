@@ -17,8 +17,8 @@
 				<div class="col-lg-12">
 					<header class="top-panel">
 						<h1>ABITO</h1>
-						<a href="{% url 'landing' %}">Войти</a>
-						<a href="">Регистрация</a>
+						<a href="{% url 'sign_in' %}">Войти</a>
+						<a href="{% url 'create_user' %}">Регистрация</a>
 						<input type="text" class="search" placeholder="Поиск Объявления">
 						  <input type="submit" value="Искать">
 					</header>
@@ -32,7 +32,7 @@
 						{% endfor %}
 					</nav>
 					<section>
-						{% block landing %}
+						{% block sign_in %}
 						{% endblock %}
 
 						{% block create_user %}
