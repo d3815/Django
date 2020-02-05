@@ -1,5 +1,5 @@
 body {
-	
+	color: black;
 }
 
 .search {
@@ -8,7 +8,6 @@ body {
 
 header h1 {
 	font-size: 40pt;
-	text-transform: uppercase;
 	text-align: center;
 	background: url('images/bg.jpg') left / auto 100% no-repeat;
 }
@@ -25,7 +24,7 @@ section	{
 	margin-left: 170px;
 }
 
-
-
-
-/* qwe */
+}
+.user-authorization {
+	padding-top: 20%; 
+}
