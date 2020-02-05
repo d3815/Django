@@ -5,9 +5,11 @@
 {% block content %}
 
 <div>
-	<h2>{{ current_product.title }}</h2>
-	<p>{{ current_product.content }}</p>
-	<p>{{ current_product.published|date:"d.m.Y H:i:s" }}</p>
+	<div>
+		<h2>{{ current_product.title }}</h2>
+		<p>{{ current_product.content }}</p>
+		<p>{{ current_product.published|date:"d.m.Y H:i:s" }}</p>
+	</div>
 </div>
 
 {% endblock %}
