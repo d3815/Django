@@ -37,5 +37,9 @@ nav a {
 }
 				
 .product {
-	border: 1px red;
+	background-color: lightgrey;
+	height: 150px;
+	width: 45%;
+	margin: 5px 5px 5px 5px;
+	float: left;
 }
