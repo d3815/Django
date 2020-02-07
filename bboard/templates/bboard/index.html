@@ -11,9 +11,14 @@
 		<a href="{% url 'by_rubric' bb.rubric.pk %}"> {{ bb.rubric.name }} </a>
 	</p>
 	<p>
-		{{ bb.published|date:"d.m.Y H:i:s" }}
+		{{ bb.published|date:"d.m.Y H:i:s" }}  <!--  {{ bb.published|date:"d.m.Y H:i:s|truncatewords:30|linebreaks" }} -->
+
+		<!-- truncatewords - обрезает значение до числа указанных слов, а linebreaks Заменяет переносы строки аналогами из HTML; один перенос строки будет заменен на br/, новая строка с предыдущей пустой строкой оборачиваются в тег p -->
+		
 	</p>
 </div>
+
+
 
 {% endfor %}
 {% endblock %}

@@ -16,6 +16,8 @@ class Bb(models.Model):
 
 
 	class Meta:
+		#ordering = ('-published',) #по умолчанию сортировать результаты по полю publish в убывающем порядке при запросе к базе данных. Мы указываем убывающий порядок с помощью отрицательного префикса.
+
 		verbose_name_plural = 'Объявления'
 		verbose_name = 'Объявление'
 		ordering = ['title']

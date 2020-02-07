@@ -15,6 +15,10 @@ def index(request):
 	return render(request, 'bboard/index.html', context)
 
 
+	# разбить по Х объявлений на одной странице
+	# https://pocoz.gitbooks.io/django-v-primerah/dobavlenie-paginacii.html 
+
+
 def by_rubric(request, rubric_id):
 	bbs = Bb.objects.filter(rubric=rubric_id)
 	rubrics = Rubric.objects.all()
