@@ -1,8 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Bb
-from .models import Rubric
+from .models import Bb, Rubric, Comment
 
 
 class BbAdmin(admin.ModelAdmin):
@@ -10,6 +9,11 @@ class BbAdmin(admin.ModelAdmin):
 	list_display_links = ('title', 'content')
 	search_fields = ('title', 'content')
 
+class CommentAdmin(admin.ModelAdmin):
+	list_display = ('name', 'email', 'post', 'created', 'active')
+	list_filter = ('active', 'created', 'updated')
+	search_fields = ('name', 'email', 'body')
 
 admin.site.register(Bb, BbAdmin)
 admin.site.register(Rubric)
+admin.site.register(Comment)

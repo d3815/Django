@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import BbForm
-from .models import Bb, Rubric
+from .models import Bb, Rubric, Comment
 
 
 
@@ -14,9 +14,11 @@ def index(request):
 	bbs = Bb.objects.all()
 	paginator = Paginator(bbs, 4)
 	rubrics = Rubric.objects.all()
+	comments = Comment.objects.all()
 	page_number = request.GET.get('page')
 	page_obj = paginator.get_page(page_number)
-	context = {'bbs' : bbs, 'rubrics': rubrics, 'page_obj' : page_obj }
+	context = {'bbs' : bbs, 'rubrics': rubrics, 'page_obj' : page_obj,
+				'comments' : comments }
 	return render(request, 'bboard/index.html', context)
    
 
@@ -35,7 +37,9 @@ def by_product(request, product_id):
 	products_list = Bb.objects.all()
 	current_product = Bb.objects.get(pk=product_id)
 	rubrics = Rubric.objects.all()
-	context = {'products_list' : products_list, 'current_product': current_product, 'rubrics': rubrics}
+	comments = Comment.objects.all()
+	context = {'products_list' : products_list, 'current_product': current_product, 
+				'rubrics': rubrics, 'comments' : comments }
 	return render(request, 'bboard/by_product.html', context)
 
 

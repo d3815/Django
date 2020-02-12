@@ -3,13 +3,18 @@
 {% block title %} {{ current_product.title }} {% endblock %}
 
 {% block content %}
-
-<div>
 	<div>
-		<h2>{{ current_product.title }}</h2>
-		<p>{{ current_product.content }}</p>
-		<p>{{ current_product.published|date:"d.m.Y H:i:s" }}</p>
+		<div>
+			<h2>{{ current_product.title }}</h2>
+			<p>{{ current_product.content }}</p>
+			<p>{{ current_product.published|date:"d.m.Y H:i:s" }}</p>
+		</div>
 	</div>
-</div>
+
+	{% with comments.count as total_comments %}
+	    <h4>
+	        {{ total_comments }} comment{{ total_comments|pluralize }}
+	    </h4>
+{% endwith %}
 
 {% endblock %}

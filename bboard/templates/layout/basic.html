@@ -12,7 +12,16 @@
 
 
 		<style type="text/css">
-			
+			.pagination {
+
+			}
+			.product {
+				background-color: lightgrey;
+				height: 250px;
+				width: 48%;
+				margin: 1% 0 0 1%;
+				float: left;
+			}
 
 		</style>
 		<!-- margin: top, right, bottom, left -->
@@ -56,12 +65,6 @@
 					<div class="col-sm-8">
 								
 						{% block content %}
-
-							{% for contact in page_obj %}
-						    {# Each "contact" is a Contact model object. #}
-						    {{ contact.full_name|upper }}<br>
-						{% endfor %}
-
 						{% endblock %}
 
 						{% block sign_in %}

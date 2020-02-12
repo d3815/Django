@@ -8,6 +8,7 @@ class Bb(models.Model):
 	published = models.DateTimeField(auto_now_add=True, db_index=True)
 	rubric = models.ForeignKey('Rubric', null=True, on_delete=models.PROTECT, 
 								verbose_name='Рубрики')
+	product = models.ForeignKey('Comment', null=True, on_delete=models.CASCADE)
 	#image = models.ImageField(upload_to='image')
 
 
@@ -35,3 +36,21 @@ class Rubric(models.Model):
 		verbose_name_plural = 'Рубрики'
 		verbose_name = 'Рубрики'
 		ordering = ['name']
+
+
+class Comment(models.Model):
+	post = models.ForeignKey(Bb, related_name='comments', on_delete=models.CASCADE)
+	name = models.CharField(max_length=80)
+	email = models.EmailField()
+	body = models.TextField()
+	created = models.DateTimeField(auto_now_add=True)
+	updated = models.DateTimeField(auto_now=True)
+	active = models.BooleanField(default=True)
+
+	class Meta:
+		ordering = ('created',)
+		verbose_name_plural = 'Комментарии'
+		verbose_name = 'Комментарий'
+		
+	def __str__(self):
+		return 'Comment by {} on {}'.format(self.name, self.post)
