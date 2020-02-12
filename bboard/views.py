@@ -3,9 +3,10 @@ from django.http import HttpResponse
 from django.template import loader
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
+from django.db.models import Count
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .forms import BbForm
+from .forms import BbForm, CommentForm
 from .models import Bb, Rubric, Comment
 
 
@@ -37,9 +38,10 @@ def by_product(request, product_id):
 	products_list = Bb.objects.all()
 	current_product = Bb.objects.get(pk=product_id)
 	rubrics = Rubric.objects.all()
-	comments = Comment.objects.all()
+	comments = Comment.objects.filter(post=product_id)
+	form = CommentForm()
 	context = {'products_list' : products_list, 'current_product': current_product, 
-				'rubrics': rubrics, 'comments' : comments }
+				'rubrics': rubrics, 'comments' : comments, 'form' : form }
 	return render(request, 'bboard/by_product.html', context)
 
 

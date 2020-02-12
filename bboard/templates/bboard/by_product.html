@@ -15,6 +15,30 @@
 	    <h4>
 	        {{ total_comments }} comment{{ total_comments|pluralize }}
 	    </h4>
-{% endwith %}
+	{% endwith %}
+
+	{% for comment in comments %}
+	    <div>
+	        <p class="comment">
+	            {{ comment.name }}
+	            {{ comment.created }}
+	        </p>
+	        {{ comment.body|linebreaks }}
+	    </div>
+
+		{% empty %}
+		    <p>There are no comments yet.</p>
+	{% endfor %}
+
+    {% if new_comment %}
+        <h2>Your comment has been added.</h2>
+    {% else %}
+        <h4>Добавить комментарий</h4>
+        <form method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <p><input type="submit" value="Добавить коммент"></p>
+        </form>
+    {% endif %}
 
 {% endblock %}
