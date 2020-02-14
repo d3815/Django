@@ -1,11 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse 
-from django.template import loader
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
-from django.db.models import Count
+from django.http import HttpResponseRedirect
+from django.core.paginator import Paginator
 
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import BbForm, CommentForm
 from .models import Bb, Rubric, Comment
 
@@ -18,19 +16,26 @@ def index(request):
 	comments = Comment.objects.all()
 	page_number = request.GET.get('page')
 	page_obj = paginator.get_page(page_number)
-	context = {'bbs' : bbs, 'rubrics': rubrics, 'page_obj' : page_obj,
-				'comments' : comments }
+	context = {
+		'bbs' : bbs,
+		'rubrics': rubrics,
+		'page_obj' : page_obj,
+		'comments' : comments
+	}
 	return render(request, 'bboard/index.html', context)
-   
 
 	# разбить по Х объявлений на одной странице
-	# https://pocoz.gitbooks.io/django-v-primerah/dobavlenie-paginacii.html 
+	# https://pocoz.gitbooks.io/django-v-primerah/dobavlenie-paginacii.html
 
 def by_rubric(request, rubric_id):
 	bbs = Bb.objects.filter(rubric=rubric_id)
 	rubrics = Rubric.objects.all()
 	current_rubric = Rubric.objects.get(pk=rubric_id)
-	context = {'bbs': bbs, 'rubrics': rubrics, 'current_rubric': current_rubric }
+	context = {
+		'bbs': bbs,
+		'rubrics': rubrics,
+		'current_rubric': current_rubric
+	}
 	return render(request, 'bboard/by_rubric.html', context)
 
 
@@ -39,9 +44,21 @@ def by_product(request, product_id):
 	current_product = Bb.objects.get(pk=product_id)
 	rubrics = Rubric.objects.all()
 	comments = Comment.objects.filter(post=product_id)
-	form = CommentForm()
-	context = {'products_list' : products_list, 'current_product': current_product, 
-				'rubrics': rubrics, 'comments' : comments, 'form' : form }
+	#latest_question_list = Question.objects.order_by('-pub_date')[:5]
+	if request.method == 'POST':
+		form = CommentForm(request.POST)
+		if form.is_valid():
+			print(form.cleaned_data)
+	else:
+		form = CommentForm()
+
+	context = {
+		'products_list' : products_list,
+		'current_product': current_product,
+		'rubrics': rubrics,
+		'comments' : comments,
+		'form' : form
+	}
 	return render(request, 'bboard/by_product.html', context)
 
 
