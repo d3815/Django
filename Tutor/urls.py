@@ -24,7 +24,7 @@ urlpatterns = [
 	path('bboard/', include('bboard.urls')),
 	path('users/', include('users.urls')),
     path('admin/', admin.site.urls),
-	path('authorization/', include('authorization.urls')),
+	#path('authorization/', include('authorization.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:

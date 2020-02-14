@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bboard.apps.BboardConfig',
     'users',
-    'authorization',
 ]
 
 MIDDLEWARE = [
