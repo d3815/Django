@@ -35,19 +35,20 @@
 		<div class="general-containe">
 			<div class="container">
 				<div class="row">
-					<div class="col-sm"></div>
-					<div class="col-sm text-center">
-						<h1>ABITO</h1>
+					<div class="col-lg"></div>
+					<div class="col-lg text-center">
+						<h1>TITLE</h1>
 				    </div>
-				    <div class="col-sm">
+				    <div class="col-lg">
 						<a href="{% url 'sign_in' %}">Войти</a>
 						<a href="{% url 'create_user' %}">Регистрация</a>
 					</div>
-
-
 				</div> <!-- div row -->
-				<div class="row justify-content-md-center">
-					<div class="col-sm-8">
+            </div>
+
+            <div class="container">
+				<div class="row justify-content-lg-center">
+					<div class="col-lg-8">
 						<div class="input-group">
 	  						<input type="text" class="form-control" placeholder="Поиск продукта" aria-label="Поиск продукта" aria-describedby="button-addon2">
 	  						<div class="input-group-append">
@@ -56,19 +57,27 @@
 						</div>
 					</div>
 				</div>
-				
-				<div class="row">
-					<div class="col-sm-2">
-						<nav>
-							<a href="{% url 'index' %}">Главная</a>
-							<a href="{% url 'add' %}">Добавить</a>
-							{% for rubric in rubrics %}
-							<a href="{% url 'by_rubric' rubric.pk %}">{{ rubric.name }}</a>
-							{% endfor %}
-						</nav>
-					</div>
-					<div class="col-sm-8">
-								
+            </div>
+
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <div class="list-group">
+                              <a href="{% url 'index' %}" class="list-group-item list-group-item-action active">
+                                Главная
+                              </a>
+                              <a href="{% url 'add' %}" class="list-group-item list-group-item-action">Добавить</a>
+                                {% for rubric in rubrics %}
+                                <a href="{% url 'by_rubric' rubric.pk %}" class="list-group-item list-group-item-action">{{ rubric.name }}</a>
+                                {% endfor %}
+
+                            <!--  <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">Vestibulum at eros</a> -->
+                        </div>
+                    </div>
+
+                    <div class="col-lg-8">
+
 						{% block content %}
 						{% endblock %}
 
@@ -77,13 +86,14 @@
 
 						{% block create_user %}
 						{% endblock %}
-						
-					</div> 
-					<div class="col-sm-2">
+
+					</div>
+					<div class="col-lg-2">
 						<p>Тут может быть Ваша реклама </p>
 					</div>
-				</div>
-			</div> 
+                </div>
+            </div>
+
 		</div> 
 	</body>
 </html>
@@ -98,4 +108,3 @@
 			  {% endfor %}
 		</select>
 		-->
-		
