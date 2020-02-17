@@ -2,22 +2,39 @@
 
 {% block content %}
 
-{% for bb in page_obj %}
-<div class="product">
-	<a href="{% url 'by_product' bb.pk %}"><h2>{{ bb.title }}</h2></a>
+
+ <div class="container">
+        <div class="row">
+            {% for bb in page_obj %}
+
+                <div class="col-lg-5 offset-lg-1 product-item" >
+                      <img src="https://html5book.ru/wp-content/uploads/2015/10/black-dress.jpg">
+                      <div class="product-list">
+                        <h3><a href="{% url 'by_product' bb.pk %}">{{  bb.title|truncatewords:3 }}</a></h3>
+                          <span class="price">{{ bb.price }}</span>
+                          <a href="" class="button">В корзину</a>
+                      </div>
+                 </div>
+
+            {% endfor %}
+     </div>
+ </div>
+<div class="container">
+    <div class="row justify-content-center" style="margin-top: 10px;">
+        {% include "layout/pagination.html" with page=page_obj %}
+    </div>
+</div>
+{% endblock %}
+
+
+<!--  <a href="{% url 'by_product' bb.pk %}"><h2>{{ bb.title }}</h2></a>
 	<p>{{ bb.content|truncatewords:5 }}</p>
 	<p>
 		<a href="{% url 'by_rubric' bb.rubric.pk %}"> {{ bb.rubric.name }} </a>
 	</p>
-	<p>
-		{{ bb.published|date:"d.m.Y H:i:s" }}  <!--  {{ bb.published|date:"d.m.Y H:i:s|truncatewords:30|linebreaks" }} -->
+	<p> -->
+		<!--  {{ bb.published|date:"d.m.Y H:i:s" }}  <!--  {{ bb.published|date:"d.m.Y H:i:s|truncatewords:30|linebreaks" }}
 
-		<!-- truncatewords - обрезает значение до числа указанных слов, а linebreaks Заменяет переносы строки аналогами из HTML; один перенос строки будет заменен на br/, новая строка с предыдущей пустой строкой оборачиваются в тег p -->
-		
-	</p>
-</div>
-{% endfor %}
-<div class="clearfix"></div>
-	{% include "layout/pagination.html" with page=page_obj %} 
+		truncatewords - обрезает значение до числа указанных слов, а linebreaks Заменяет переносы строки аналогами из HTML; один перенос строки будет заменен на br/, новая строка с предыдущей пустой строкой оборачиваются в тег p
 
-{% endblock %}
+	</p> -->

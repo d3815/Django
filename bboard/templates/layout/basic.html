@@ -12,21 +12,54 @@
 
 
 		<style type="text/css">
-			.pagination {
-
-			}
-			.product {
-				background-color: lightgrey;
-				height: 250px;
-				width: 48%;
-				margin: 1% 0 0 1%;
-				float: left;
-			}
 			.comment {
 				background-color: : lightgray;
 				height: 100%;
 				width: 100%;
 			}
+
+            * {box-sizing: border-box;}
+            .product-item {
+              width: 300px;
+              text-align: center;
+              border-bottom: 2px solid #F5F5F5;
+              background: white;
+              font-family: "Open Sans";
+              transition: .3s ease-in;
+            }
+            .product-item:hover {border-bottom: 2px solid #fc5a5a;}
+            .product-item img {
+              display: block;
+              width: 100%;
+            }
+            .product-list {
+              background: #fafafa;
+              padding: 15px 0;
+            }
+            .product-list h3 {
+              font-size: 18px;
+              font-weight: 400;
+              color: #444444;
+              margin: 0 0 10px 0;
+            }
+            .price {
+              font-size: 16px;
+              color: #fc5a5a;
+              display: block;
+              margin-bottom: 12px;
+            }
+            .button {
+              text-decoration: none;
+              display: inline-block;
+              padding: 0 12px;
+              background: #cccccc;
+              color: white;
+              text-transform: uppercase;
+              font-size: 12px;
+              line-height: 28px;
+              transition: .3s ease-in;
+            }
+            .product-item:hover .button {background: #fc5a5a;}
 
 		</style>
 		<!-- margin: top, right, bottom, left -->
@@ -37,7 +70,7 @@
 				<div class="row">
 					<div class="col-lg"></div>
 					<div class="col-lg text-center">
-						<h1>TITLE</h1>
+						<h1 style="color: lightgray;">Название сайта</h1>
 				    </div>
 				    <div class="col-lg">
 						<a href="{% url 'sign_in' %}">Войти</a>
@@ -47,9 +80,9 @@
             </div>
 
             <div class="container">
-				<div class="row justify-content-lg-center">
-					<div class="col-lg-8">
-						<div class="input-group">
+				<div class="row">
+					<div class="col-lg-8 offset-lg-2">
+						<div class="input-group justify-content-center">
 	  						<input type="text" class="form-control" placeholder="Поиск продукта" aria-label="Поиск продукта" aria-describedby="button-addon2">
 	  						<div class="input-group-append">
 	    						<button class="btn btn-primary" type="button" id="button-addon2">Найти</button>
@@ -58,7 +91,6 @@
 					</div>
 				</div>
             </div>
-
 
             <div class="container">
                 <div class="row">
@@ -88,6 +120,7 @@
 						{% endblock %}
 
 					</div>
+
 					<div class="col-lg-2">
 						<p>Тут может быть Ваша реклама </p>
 					</div>
