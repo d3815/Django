@@ -3,12 +3,21 @@
 {% block title %} {{ current_rubric.name }} {% endblock %}
 
 {% block content %}
-<h2>Рубрика: {{ current_rubric.name }}</h2>
-{% for bb in bbs %}
-<div>
-	<a href="{% url 'by_product' bb.pk %}"><h2>{{ bb.title }}</h2></a>
-	<p>{{ bb.content }}</p>
-	<p>{{ bb.published|date:"d.m.Y H:i:s" }}</p>
-</div>
-{% endfor %}
+<h2 style="color: gray;">Категория: {{ current_rubric.name }}</h2>
+
+<div class="container">
+    <div class="row">
+            {% for bb in bbs %}
+                <div class="col-lg-5 offset-lg-1 product-item" >
+                      <img src="https://html5book.ru/wp-content/uploads/2015/10/black-dress.jpg">
+                      <div class="product-list">
+                        <h3><a href="{% url 'by_product' bb.pk %}">{{  bb.title|truncatewords:3 }}</a></h3>
+                          <span class="price">{{ bb.price }}</span>
+                          <a href="" class="button">В корзину</a>
+                      </div>
+                 </div>
+            {% endfor %}
+    </div>
+ </div>
+
 {% endblock %}
