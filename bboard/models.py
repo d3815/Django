@@ -7,8 +7,6 @@ class Bb(models.Model):
     price = models.FloatField(null=True, blank=True)
     published = models.DateTimeField(auto_now_add=True, db_index=True)
     rubric = models.ForeignKey('Rubric', null=True, on_delete=models.PROTECT, verbose_name='Рубрики')
-    #product = models.ForeignKey('Comment', null=True, on_delete=models.CASCADE, blank=True)
-
     # image = models.ImageField(upload_to='image')
 
     def __str__(self):

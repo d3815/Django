@@ -3,7 +3,7 @@ html, body {
 	max-height: 100%;
 }
 
-header h1 {
+.noname {
 	font-size: 40pt;
 	background: url('images/bg.jpg') left / auto 100% no-repeat;
 }

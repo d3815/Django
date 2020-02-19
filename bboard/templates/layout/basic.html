@@ -69,18 +69,20 @@
 	</head>
 	<body>
 		<div class="general-containe">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg"></div>
-					<div class="col-lg text-center">
-						<h1 style="color: lightgray;">Название сайта</h1>
-				    </div>
-				    <div class="col-lg">
-						<a href="{% url 'sign_in' %}">Войти</a>
-						<a href="{% url 'create_user' %}">Регистрация</a>
-					</div>
-				</div> <!-- div row -->
-            </div>
+            <header1>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg"></div>
+                        <div class="col-lg text-center">
+                            <h1 style="color: lightgray;">Название сайта</h1>
+                        </div>
+                        <div class="col-lg">
+                            <a href="{% url 'sign_in' %}">Войти</a>
+                            <a href="{% url 'create_user' %}">Регистрация</a>
+                        </div>
+                    </div> <!-- div row -->
+                </div>
+            </header1>
 
             <div class="container">
 				<div class="row">
@@ -97,9 +99,9 @@
 
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-2">
+                    <div class="col-lg-2"> <!-- nav -->
                         <div class="list-group">
-                              <a href="{% url 'index' %}" class="list-group-item list-group-item-action active">
+                              <a href="{% url 'index' %}" class="list-group-item list-group-item-action">
                                 Главная
                               </a>
                               <a href="{% url 'add' %}" class="list-group-item list-group-item-action">Добавить</a>
@@ -129,7 +131,9 @@
 					</div>
                 </div>
             </div>
+            <footer>
 
+            </footer>
 		</div> 
 	</body>
 </html>
