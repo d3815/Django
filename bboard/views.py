@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView
+from django.views.generic.base import View
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator
@@ -8,21 +9,22 @@ from .forms import BbForm, CommentForm
 from .models import Bb, Rubric, Comment
 
 
-
-def index(request):
-	bbs = Bb.objects.all()
-	paginator = Paginator(bbs, 4)
-	rubrics = Rubric.objects.all()
-	comments = Comment.objects.all()
-	page_number = request.GET.get('page')
-	page_obj = paginator.get_page(page_number)
-	context = {
-		'bbs' : bbs,
-		'rubrics': rubrics,
-		'page_obj' : page_obj,
-		'comments' : comments
-	}
-	return render(request, 'bboard/index.html', context)
+class ProductView(View):
+	'''Список товаров'''
+	def get(self, request):
+		bbs = Bb.objects.all()
+		rubrics = Rubric.objects.all()
+		comments = Comment.objects.all()
+		paginator = Paginator(bbs, 4)
+		page_number = request.GET.get('page')
+		page_obj = paginator.get_page(page_number)
+		context = {
+			'bbs': bbs,
+			'rubrics': rubrics,
+			'page_obj': page_obj,
+			'comments': comments
+		}
+		return render(request, 'bboard/index.html', context)
 
 	# разбить по Х объявлений на одной странице
 	# https://pocoz.gitbooks.io/django-v-primerah/dobavlenie-paginacii.html

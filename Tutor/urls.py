@@ -21,7 +21,7 @@ from django.conf import settings
 admin.autodiscover()
 
 urlpatterns = [
-	path('bboard/', include('bboard.urls')),
+	path('', include('bboard.urls')),
 	path('users/', include('users.urls')),
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
