@@ -7,7 +7,7 @@ class Bb(models.Model):
     content = models.TextField(null=True, blank=True)
     price = models.FloatField(null=True, blank=True)
     published = models.DateTimeField(auto_now_add=True, db_index=True)
-    #url = models.SlugField(max_length=128, unique=True)
+
     rubric = models.ForeignKey('Rubric', null=True, on_delete=models.PROTECT, verbose_name='Рубрики')
     # image = models.ImageField(upload_to='image')
 

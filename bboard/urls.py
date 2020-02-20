@@ -6,4 +6,4 @@ urlpatterns = [
 	path('', ProductListView.as_view(), name=''),
 	path('add/', BbCreateProductView.as_view(), name='add'),
 	path('<int:pk>', ProductDetailView.as_view(), name='productDetail'),
-] 
+]
