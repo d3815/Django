@@ -9,23 +9,27 @@
             <form method="post" class="col-lg-10 offset-lg-1"> {% csrf_token %}
                 <div class="form-group">
                     <label for="inputTitle">Title</label>
-                    <input type="text" class="form-control" id="inputTitle" placeholder="Enter title"> <!-- value="{{ form.title }}" -->
+                    <input type="text" class="form-control" id="inputTitle" placeholder="Enter title" name="title"> <!-- {{ form.title }} -->
                 </div>
                 <div class="form-group">
                     <label for="inputContent">Content</label>
-                    <input type="text" class="form-control" id="inputContent" placeholder="Enter content"> <!-- value="{{ form.content }}" -->
+                    <input type="text" class="form-control" id="inputContent" placeholder="Enter content" name="content"> <!-- value="{{ form.content }}" -->
                 </div>
                 <div class="form-group">
                     <label for="inputePrice">Price</label>
-                    <input type="text" class="form-control" id="inputePrice" placeholder="0"> <!-- value="{{ form.price }}" -->
+                    <input type="text" class="form-control" id="inputePrice" placeholder="0" name="price"> <!-- value="{{ form.price }}" -->
                 </div>
                 <div class="form-group">
-                    <label for="rubricFormSelect">Rubric</label>
-                    <select class="form-control" id="rubricFormSelect">
+                    <label for="inputRubric">Rubric</label>
+                    <select class="form-control" id="inputRubric" name="rubric">
                       {% for rubric in rubrics %}
-                          <option> {{ rubric.name }}</option>
+                          <option value="{{ rubric.id }}"> {{ rubric.name }}</option>
                       {% endfor %}
                     </select>
+                </div>
+                <div class="form-group">
+                     <label for="inputImage">Image file input</label>
+                    <input type="file" class="form-control-file" id="inputImage" name="image">
                 </div>
                 <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Опубликовать</button>
             </form>

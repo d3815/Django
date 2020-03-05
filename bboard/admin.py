@@ -5,9 +5,10 @@ from .models import Bb, Rubric, Comment
 
 
 class BbAdmin(admin.ModelAdmin):
-	list_display = ('title', 'content', 'price', 'published', 'rubric')
+	list_display = ('title', 'content', 'price', 'published', 'rubric', 'url')
 	list_display_links = ('title', 'content')
 	search_fields = ('title', 'content')
+	prepopulated_fields = {'url':('title',)}
 
 class CommentAdmin(admin.ModelAdmin):
 	list_display = ('name', 'email', 'post', 'created', 'active')

@@ -1,12 +1,18 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
-
-from .forms import UserForm, LoginForm
-from bboard.models import Rubric #, Bb
+#from django.contrib import auth
 
 
-def sign_in(request):
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect
+from django.contrib import auth
+
+from .forms import LoginForm
+from bboard.models import Rubric, Bb
+
+
+'''def sign_in(request):
 	form = UserForm(request.POST or None)
 	#bbs = Bb.objects.all()
 	rubrics = Rubric.objects.all()
@@ -15,17 +21,11 @@ def sign_in(request):
 		print(data)
 
 	context = {'rubrics': rubrics}
-	return render(request, 'users/sign_in.html', locals())
+	return render(request, 'users/sign_in.html', locals())'''
 
 
-def create_user(request):
-	form = UserForm(request.POST or None)
-	rubrics = Rubric.objects.all()
-	context = {'rubrics': rubrics}
-	return render(request, 'users/create_user.html', locals())
-
-
-def user_login(request):
+'''def sign_in(request):
+    rubrics = Rubric.objects.all()
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -41,4 +41,34 @@ def user_login(request):
                 return HttpResponse('Invalid login')
     else:
         form = LoginForm()
-    return render(request, 'account/login.html', {'form': form})
+    context = {'rubrics': rubrics, 'form': form}
+    return render(request, 'users/sign_in.html', context)
+
+
+def logout(request):
+	auth.logout(request)
+	return HttpResponseRedirect(‘/’) '''
+
+def login(request):
+	rubrics = Rubric.objects.all()
+	if request.method == 'POST':
+		username = request.POST['username']
+		password = request.POST['password']
+		user = authenticate(request, username=username, password=password)
+		if user is not None:
+			login(user)
+		else:
+			pass
+	return render(request, 'users/sign_in.html', locals())
+
+def create_user(request):
+	#form = UserForm(request.POST or None)
+	rubrics = Rubric.objects.all()
+	context = {'rubrics': rubrics}
+	return render(request, 'users/create_user.html', locals())
+
+
+def profile(request):
+	rubrics = Rubric.objects.all()
+	context = {'rubrics': rubrics}
+	return render(request, 'users/profile.html', locals())

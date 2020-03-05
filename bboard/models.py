@@ -7,9 +7,9 @@ class Bb(models.Model):
     content = models.TextField(null=True, blank=True)
     price = models.FloatField(null=True, blank=True)
     published = models.DateTimeField(auto_now_add=True, db_index=True)
-
     rubric = models.ForeignKey('Rubric', null=True, on_delete=models.PROTECT, verbose_name='Рубрики')
-    # image = models.ImageField(upload_to='image')
+    image = models.ImageField('Изображения', upload_to='products', blank=True)
+    url = models.SlugField(max_length=50)
 
     def __str__(self):
         return self.title
@@ -45,7 +45,7 @@ class Comment(models.Model):
     post = models.ForeignKey(Bb, related_name='comments', on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=80)
     email = models.EmailField()
-    body = models.TextField()
+    body = models.CharField(max_length=100)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
@@ -56,4 +56,4 @@ class Comment(models.Model):
         verbose_name = 'Комментарий'
 
     def __str__(self):
-        return 'Comment by {} on {}'.format(self.name, self.post)
+        return self.name

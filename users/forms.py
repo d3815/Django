@@ -9,7 +9,10 @@ class UserForm(ModelForm):
 		fields = ('email', 'password')
 		#exclude = () поля которые нужно исключить (противоположность от филдс)
 
-
 class LoginForm(ModelForm):
-	username = forms.CharField()
-	password = forms.CharField(widget=forms.PasswordInput)
+	username = forms.CharField(max_length = 100)
+	password = forms.CharField(widget=forms.PasswordInput())
+
+	class Meta:
+		model = User
+		fields = ('email', 'password')

@@ -7,10 +7,10 @@
         <div class="row">
             {% for bb in page_obj %}
 
-                <div class="col-lg-5 offset-lg-1 product-item" >
-                      <img src="https://html5book.ru/wp-content/uploads/2015/10/black-dress.jpg">
+                <div class="col-lg-5 offset-lg-1 product-item" style="margin-top: 15px;">
+                      <img src="{{ MEDIA_URL }}{{ bb.image }}" style="max-width: 274px; max-height: 300px;">
                       <div class="product-list">
-                        <h3><a href="{% url 'productDetail' bb.pk %}">{{  bb.title|truncatewords:3 }}</a></h3>
+                        <h3><a href="{% url 'by_product' bb.pk bb.url%}">{{  bb.title|truncatewords:3 }}</a></h3>
                           <span class="price">{{ bb.price }}</span>
                           <a href="" class="button">В корзину</a>
                       </div>
