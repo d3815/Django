@@ -3,8 +3,9 @@ from django import forms
 
 from .models import Bb, Comment
 
+
 class BbForm(ModelForm):
-	#title = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter title'}))
+	# title = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter title'}))
 	class Meta:
 		model = Bb
 		fields = ('title', 'content', 'price', 'rubric', 'image')

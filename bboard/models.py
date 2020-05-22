@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Bb(models.Model):
-    '''Товары'''
+    """ Товары """
     title = models.CharField(max_length=50)
     content = models.TextField(null=True, blank=True)
     price = models.FloatField(null=True, blank=True)
@@ -14,8 +14,7 @@ class Bb(models.Model):
     def __str__(self):
         return self.title
 
-
-    '''def get_absolute_url(self):
+    ''' def get_absolute_url(self):
         return reverse('productDetail', kwargs={"slug" : self.url})
     '''
 
@@ -28,7 +27,7 @@ class Bb(models.Model):
 
 
 class Rubric(models.Model):
-    '''Категории'''
+    """ Категории """
     name = models.CharField(max_length=20, db_index=True, verbose_name='Название')
 
     def __str__(self):
@@ -41,7 +40,7 @@ class Rubric(models.Model):
 
 
 class Comment(models.Model):
-    '''Комментарии к товарам'''
+    """ Комментарии к товарам """
     post = models.ForeignKey(Bb, related_name='comments', on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=80)
     email = models.EmailField()

@@ -10,10 +10,12 @@ class BbAdmin(admin.ModelAdmin):
 	search_fields = ('title', 'content')
 	prepopulated_fields = {'url':('title',)}
 
+
 class CommentAdmin(admin.ModelAdmin):
 	list_display = ('name', 'email', 'post', 'created', 'active')
 	list_filter = ('active', 'created', 'updated')
 	search_fields = ('name', 'email', 'body')
+
 
 admin.site.register(Bb, BbAdmin)
 admin.site.register(Rubric)

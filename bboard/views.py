@@ -7,11 +7,14 @@ from django.core.paginator import Paginator
 from .forms import BbForm, CommentForm
 from .models import Bb, Rubric, Comment
 
-#если хочешь убрать все общие данные, то посмотри видос -
+# если хочешь убрать все общие данные, то посмотри видос -
 # https://www.youtube.com/watch?v=_do8WT4z_7I&list=PLF-NY6ldwAWrb6nQcPL21XX_-AmivFAYq&index=16
 
+
 class ProductListView(View):
-	'''Список товаров'''
+	"""
+		Список товаров
+	"""
 	def get(self, request):
 		bbs = Bb.objects.all()
 		rubrics = Rubric.objects.all()
@@ -27,11 +30,9 @@ class ProductListView(View):
 		}
 		return render(request, 'bboard/index.html', context)
 
-	# разбить по Х объявлений на одной странице
-	# https://pocoz.gitbooks.io/django-v-primerah/dobavlenie-paginacii.html
 
 class CurrentRubricListView(View):
-	'''Список категорий'''
+	"""Список категорий"""
 	def get(self, request, rubric_id):
 		bbs = Bb.objects.filter(rubric=rubric_id)
 		rubrics = Rubric.objects.all()
@@ -45,11 +46,11 @@ class CurrentRubricListView(View):
 
 
 def by_product(request, product_id, url):
-	#products_list = Bb.objects.all()
+	# products_list = Bb.objects.all()
 	current_product = Bb.objects.get(pk=product_id)
 	rubrics = Rubric.objects.all()
 	comments = Comment.objects.filter(post=product_id)
-	#latest_question_list = Question.objects.order_by('-pub_date')[:5]
+	# latest_question_list = Question.objects.order_by('-pub_date')[:5]
 	if request.method == 'POST':
 		form = CommentForm(request.POST)
 		if form.is_valid():
@@ -60,11 +61,11 @@ def by_product(request, product_id, url):
 	else:
 		form = CommentForm()
 	context = {
-		#'products_list' : products_list,
+		# 'products_list' : products_list,
 		'current_product': current_product,
 		'rubrics': rubrics,
-		'comments' : comments,
-		'form' : form
+		'comments': comments,
+		'form': form
 	}
 	return render(request, 'bboard/by_product.html', context)
 
@@ -72,6 +73,7 @@ def by_product(request, product_id, url):
 '''class CommentAddReview():
 	pass
 '''
+
 
 class BbCreateProductView(CreateView):
 	template_name = 'bboard/create_product.html'
@@ -81,9 +83,8 @@ class BbCreateProductView(CreateView):
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
 		context['rubrics'] = Rubric.objects.all()
-		#context['bbs'] = Bb.objects.all()
+		# context['bbs'] = Bb.objects.all()
 		return context
-
 
 
 '''filtering and ordering function for view   
@@ -91,4 +92,3 @@ https://monosnap.com/file/7yljLWwhxfct9dDUsCbT8TE2tff9QO
 или 
 >>> Online.objects.filter(company__name__contains = 'company'
 '''
-
